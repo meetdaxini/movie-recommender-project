@@ -1,0 +1,21 @@
+# Distribution / packaging
+.Python
+venv/
+env/
+.env
+*.sqlite3
+.idea/
+.vscode/
+# Project asset folders
+/static/
+/media/
+# Database
+db.sqlite3
+# Editor directories and files
+.idea
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+#django admin
+staticfiles

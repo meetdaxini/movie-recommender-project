@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono&display=swap');
+:root{
+    /*===== Font weight =====*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+  
+    /*===== Colors =====*/
+    --first-color: #477998;
+    --first-color-dark: #0D424D;
+    --first-color-darken: #0B3142;
+    --text-color: #D9E9DA; 
+    --first-color-light: #eae7e6;
+    --first-color-lighten: #fffafa;
+    --bg-color: #383D3B;
+  
+    /*===== Font and typography =====*/
+    --body-font: 'Xanh Mono', monospace, sans-serif;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+    --smaller-font-size: .75rem;
+  
+    /*===== Margins =====*/
+    --mb-1: .5rem;
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+    --mb-4: 2rem;
+    --mb-5: 2.5rem;
+  
+    /*===== z index =====*/
+    --z-fixed: 100;
+  }
+
+  @media screen and (min-width: 768px){
+    :root{
+      --h1-font-size: 2.25rem;
+      --h2-font-size: 1.5rem;
+      --h3-font-size: 1.25rem;
+      --normal-font-size: 1rem;
+      --small-font-size: .875rem;
+      --smaller-font-size: .813rem;  
+    }
+  }
+  /*===== BASE =====*/
+  *,::before,::after{
+    box-sizing: border-box;
+  }
+  
+  html{
+    scroll-behavior: smooth;
+  }
+  
+  body{
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    position: relative;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  h1,h2,h3,p{
+    margin: 0;
+  }
+  
+  h3{
+    font-weight: var(--font-semi-bold);
+  }
+  
+  ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  a{
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  
+  img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    line-height: 150px;
+    text-align: center;
+  }
+  
+  /*===== CLASS CSS ===== */
+  .section{
+    padding: 4rem 0 2rem;
+  }
+  
+  .section-title{
+    font-size: var(--h1-font-size);
+    color: var(--text-color);
+    margin-bottom: var(--mb-3);
+    text-align: center;
+  }
+  
+  .section-subtitle{
+    display: block;
+    font-size: var(--small-font-size);
+    color: var(--first-color-darken);
+    text-align: center;
+    font-weight: var(--font-bold);
+    margin-bottom: .25rem;
+  }
+
+  .bd-grid{
+    max-width: 1024px;
+    display: grid;
+    grid-template-columns: 100%;
+    column-gap: 2rem;
+    width: calc(100% - 2rem);
+    margin-left: var(--mb-2);
+    margin-right: var(--mb-2);
+  }
+
+.header{
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.header__link:hover{
+    
+    text-decoration: none;
+    color: #00ff11;
+
+}
+
+
+
+  /* ===== Search Movie ==== */
+
+  .form-control{
+    width: 70% !important;
+
+  }
+
+
+  .movie__container{
+    justify-items: center;
+    row-gap: 2rem;
+  }
+
+
+  .movie__link:hover{
+    color: var(--text-color);
+
+
+}
+
+.movies__img{
+    position: relative;
+    overflow: hidden;
+    width: 13.5rem;
+    height: 20rem;
+    border-radius: .5rem;
+  }
+  
+  .movies__data{
+    position: absolute;
+    bottom: -100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(217, 233, 218, .7);
+    border-radius: .5rem;
+    transition: .3s;
+    font-weight: bold;
+  }
+  
+
+.movies__title{
+    font-size: var(--h2-font-size);
+    color: var(--bg-color);
+  }
+  
+  .movies__img:hover .movies__data{
+    bottom: 0;
+  }
+
+
+  /* ===== related movies =====*/
+.related__container{
+    justify-items: center;
+    row-gap: 2rem;
+  }
+  
+
+  .related_movies__link{
+    display: inline-flex;
+    font-size: 1.5rem;
+    color: var(--bg-color);
+    padding: .25rem;
+    border-radius: .25rem;
+    margin-bottom: var(--mb-2);
+  }
+  .related_movies__link:hover{
+      color: var(--bg-color);
+
+  }
+
+
+  
+/* ===== Footer =====*/
+.footer {
+    text-align: center;
+    width: 100%;
+    padding: 1.5rem 0 0rem;
+    margin-top: auto;
+  }
+
+
+/* github fork icon */
+
+.github-corner svg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #ffffff;
+    fill: #abe6af;
+    
+  }
+
+  .github-corner:hover .octo-arm {
+    animation: octocat-wave .56s;
+  }
+  
+
+
+  @keyframes octocat-wave {
+    0%, 100% {
+      transform: rotate(0);
+    }
+    20%, 60% {
+      transform: rotate(-20deg);
+    }
+    40%, 80% {
+      transform: rotate(10deg);
+    }
+  }
+
+  
+
+
+/* ===== MEDIA QUERIES =====*/
+@media screen and (min-width: 768px){
+    .home__button{
+      width: initial;
+    }
+
+  
+  
+    .related__container{
+      grid-template-columns: repeat(3,1fr);
+    }
+  
+  
+  
+  }
+  
+  @media screen and (min-width: 1024px){
+  
+    .section{
+      padding: 3rem 0 2rem;
+    }
+  
+    .bd-grid{
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .related__container{
+      grid-template-columns: repeat(4,1fr);
+    }
+  
+  
+  }
