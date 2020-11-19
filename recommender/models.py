@@ -11,7 +11,3 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.Title
-
-class Related_Movie(models.Model):
-    movieID = models.OneToOneField(Movie, primary_key=True, on_delete=models.CASCADE)
-    related_movie = models.ManyToManyField(Movie, related_name='rel_movs')
