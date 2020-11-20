@@ -132,7 +132,10 @@ def recommender(request):
 def auto_complete(request):
     search = request.GET.get('term')
     # print(search)
-    movie_objects = Movie.objects.filter(Title__icontains=search)
-    movies = [movie.Title for movie in movie_objects]
+    if len(search)<3:
+        movie_objects = Movie.objects.filter(Title__istartswith=search)
+    else:
+        movie_objects = Movie.objects.filter(Title__icontains=search)
+    movies = [movie.Title for movie in movie_objects][:15]
     movies_json = JsonResponse(movies, safe=False)
     return movies_json

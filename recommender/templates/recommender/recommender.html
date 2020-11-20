@@ -18,8 +18,8 @@
                         <img src="{{ search_movie.Poster }}" alt="{{search_movie}} Poster">
                         <div class="movies__data">
                             <span class="movies__title">
-                                <div class="d-flex"><img src="{% static 'recommender/img/imdb.png' %}" width="50" height="50">
-                                    <p class="align-self-center">{{search_movie.imdbRating}}/10</p>
+                                <div class="d-flex"><a href="https://www.imdb.com/title/{{ movie.imdbID }}" target="_blank"><img src="{% static 'recommender/img/imdb.png' %}" width="50" height="50">
+                                  </a><p class="align-self-center">{{search_movie.imdbRating}}/10</p>
                                 </div>
                             </span>
                             {% if search_movie.rotten_tomatoes != 0 %}

@@ -29,14 +29,14 @@ if not os.path.isfile('.env'):
         with open(env_file, "w") as f:
             f.write(payload)
 
-env = environ.Env()
+env = environ.Env(DEBUG=(bool, False))
 env.read_env(env_file)
 
 # Setting this value from django-environ
 SECRET_KEY = env("SECRET_KEY")
 
 # Could be more explicitly set (see "Improvements")
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = []
 
 # Default false. True allows default landing pages to be visible
 DEBUG = env("DEBUG")

@@ -70,14 +70,14 @@
         <img src="{{ movie.Poster }}" alt="{{movie.Title}} Poster">
         <div class="movies__data">
           {% if movie.imdbID %}
-          <a href="https://www.imdb.com/title/{{ movie.imdbID }}" class="related_movies__link" target="_blank">
+          <a href="" class="related_movies__link" target="_blank">
             {% endif %} <span class="movies__title">{{movie.Title}}</span> {% if movie.imdbID %} </a> {% endif %}
 
           <span class="movies__title">{{movie.Year}}</span>
 
           {% if movie.imdbRating != 0.0 %}
           <span class="movies__title">
-            <div class="d-flex"><img src="{% static 'recommender/img/imdb.png' %}" width="50" height="50">
+            <div class="d-flex"> <a href="https://www.imdb.com/title/{{ movie.imdbID }}" target="_blank"><img src="{% static 'recommender/img/imdb.png' %}" width="50" height="50"></a>
               <p class="align-self-center">{{movie.imdbRating}}/10</p>
             </div>
           </span>
