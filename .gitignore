@@ -45,3 +45,7 @@ bundles/
 vendor/pkg/
 pyenv
 Vagrantfile
+
+# Goofle cloud run
+.theia/
+movie_recommender/migrations/
