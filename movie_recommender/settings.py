@@ -36,7 +36,7 @@ env.read_env(env_file)
 SECRET_KEY = env("SECRET_KEY")
 
 # Could be more explicitly set (see "Improvements")
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS += [env("ALLOWED_HOSTS")]
 
 # Default false. True allows default landing pages to be visible
 DEBUG = env("DEBUG")
