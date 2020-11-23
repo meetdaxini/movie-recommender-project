@@ -3,42 +3,54 @@
 {% block title %} {{movie_name}} {% endblock %}
 
 {% block content %}
-    {% if no_movie %}
-        <section class="movie__container section">
-            <h1 class="section-title">{{no_movie}}</h1>
-        </section>
-    {% else %}
-        <section class="movie__container section ">
-            <a href="https://www.imdb.com/title/{{ search_movie.imdbID }}" class="movie__link" target="_blank">
-                <h1 class="section-title">{{search_movie}}({{search_movie.Year}})</h1>
-            </a>
-            <div class="container">
-                <div class="d-flex justify-content-center">
-                    <div class="movies__img">
-                        <img src="{{ search_movie.Poster }}" alt="{{search_movie}} Poster">
-                        <div class="movies__data">
-                            <span class="movies__title">
-                                <div class="d-flex"><a href="https://www.imdb.com/title/{{ movie.imdbID }}" target="_blank"><img src="{% static 'recommender/img/imdb.png' %}" width="50" height="50">
-                                  </a><p class="align-self-center">{{search_movie.imdbRating}}/10</p>
-                                </div>
-                            </span>
-                            {% if search_movie.rotten_tomatoes != 0 %}
-                            <span class="movies__title">🍅 {{search_movie.rotten_tomatoes}}%</span>
-                            {% endif %}
+{% if no_movie %}
+<section class="movie__container section">
+    <h1 class="section-title">{{no_movie}}</h1>
+</section>
+{% else %}
+<section class="movie__container section ">
+    <a href="http://www.google.com/search?q={{search_movie.Title}}" class="movie__link" target="_blank">
+        <h1 class="section-title">{{search_movie.Title}}({{search_movie.Year}})</h1>
+    </a>
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <div class="movies__img">
+                <img src="{{ search_movie.Poster }}" alt="{{search_movie.Title}} Poster">
+                <div class="movies__data">
+
+                    {% if movie.imdbRating != 0.0 %}
+                    <a class="text-decoration-none" href="https://www.imdb.com/title/{{ search_movie.imdbID }}"
+                        target="_blank">
+                        <div class="d-flex justify-content-center">
+                            <img src="{% static 'recommender/img/imdb.png' %}" width="50" height="50">
+                            <span class="movies__title mt-2 ml-1">{{search_movie.imdbRating}}/10</span>
                         </div>
+                    </a>
+                    {% endif %}
 
+                    {% if search_movie.rotten_tomatoes != 0 %}
+                    <div class="d-flex justify-content-center">
+                        <a href="https://www.rottentomatoes.com/m/{{ search_movie }}" target="_blank"
+                            class="text-decoration-none">
+                            <span class="movies__title">🍅 {{search_movie.rotten_tomatoes}}%</span>
+                        </a>
                     </div>
+                    {% endif %}
+
                 </div>
+
             </div>
+        </div>
+    </div>
 
-        </section>
+</section>
 
 
-        
-    {% endif %}
+
+{% endif %}
 
 {% endblock %}
 
-{% block section-title %}             
+{% block section-title %}
 <h2 class="section-title"> Movie Recommendations for '{{movie_name}}'</h2>
 {% endblock %}
