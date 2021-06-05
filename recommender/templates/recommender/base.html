@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{% static 'recommender/css/styles.css' %}">
 
   <!-- for autocomplete -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
   <link rel="icon" href="{% static 'recommender/icon/favicon.ico' %}">
 
@@ -60,12 +60,12 @@
   {% endblock %}
 
   <section class="related_movies section" id="related_movies">
-    {% if many_movies|length != 0  %}
+    {% if many_movies|length != 0 %}
     {% block section-title %}
     {% endblock %}
 
     <div class="related__container bd-grid">
-      {% for movie in many_movies  %}
+      {% for movie in many_movies %}
       <div class="movies__img">
         <img src="{{ movie.Poster }}" alt="{{movie.Title}} Poster">
         <div class="movies__data">

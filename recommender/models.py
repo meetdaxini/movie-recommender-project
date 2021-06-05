@@ -9,7 +9,7 @@ class Movie(models.Model):
     imdbRating = models.FloatField()
     rotten_tomatoes = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True, editable=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         punc = """!"#$%&'()*+,./:;<=>?@[\]^_`{|}~"""

@@ -30,6 +30,16 @@ if not os.path.isfile(".env"):
 env = environ.Env(DEBUG=(bool, False), LOCAL=(bool, False))
 env.read_env(env_file)
 
+# ADMIN CONFIG
+ADMIN_USERNAME = env("ADMIN_USERNAME")
+ADMIN_EMAIL = env("ADMIN_EMAIL")
+ADMIN_PASSWORD = env("ADMIN_PASSWORD")
+
+# external api keys for recommensation
+TASTE_API = env("TASTE_API")
+TMDB_API = env("TMDB_API")
+OMDB_API = env("OMDB_API")
+
 # Setting this value from django-environ
 SECRET_KEY = env("SECRET_KEY")
 
@@ -43,6 +53,7 @@ DEBUG = env("DEBUG")
 INSTALLED_APPS += ["storages"]  # for django-storages
 if "movie_recommender" not in INSTALLED_APPS:
     INSTALLED_APPS += ["movie_recommender"]  # for custom data migration
+
 
 if not env("LOCAL"):
     # Setting this value from django-environ

@@ -1,23 +1,22 @@
-import os
-
-import environ
+from django.conf import settings
 from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.utils import timezone
 from requests import get
 
 from .models import Movie
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-env_file = os.path.join(BASE_DIR, ".env")
-env = environ.Env()
-env.read_env(env_file)
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# env_file = os.path.join(BASE_DIR, ".env")
+# env = environ.Env()
+# env.read_env(env_file)
 
 
 def get_trending_from_tmdb():
     baseurl = "https://api.themoviedb.org/3/trending/movie/day"
     par = {}
-    par["api_key"] = env("TMDB_API")
+    par["api_key"] = settings.TMDB_API
     trend_req = get(baseurl, params=par)
     trend_movies_dicts = trend_req.json()
     # print(trend_movies_dicts)
@@ -41,7 +40,7 @@ def get_movies_from_tastedive(mov):
     baseurl = "https://tastedive.com/api/similar"
     par = {}
     par["q"] = mov
-    par["k"] = env("TASTE_API")
+    par["k"] = settings.TASTE_API
     par["limit"] = "16"
     par["type"] = "movie"
     sim_req = get(baseurl, params=par)
@@ -53,7 +52,7 @@ def get_movies_from_tastedive(mov):
 def get_movie_data(mov):
     baseurl = "http://www.omdbapi.com/"
     par = {}
-    par["apikey"] = env("OMDB_API")
+    par["apikey"] = settings.OMDB_API
     par["t"] = mov
     par["r"] = "json"
     movie_data = get(baseurl, params=par)
@@ -119,6 +118,8 @@ def recommender(request):
                 Year=added_movie[3][:4],
                 imdbRating=added_movie[4],
                 rotten_tomatoes=added_movie[5],
+                created_at=timezone.now(),
+                updated_at=timezone.now(),
             )
             search_movie.save()
             # print(search_movie.Title, 'found in api')
@@ -154,6 +155,8 @@ def recommender(request):
                         Year=related_movie_data[3][:4],
                         imdbRating=related_movie_data[4],
                         rotten_tomatoes=related_movie_data[5],
+                        created_at=timezone.now(),
+                        updated_at=timezone.now(),
                     )
                     new_related_mv.save()
                     # print(new_related_mv.Title, 'found related in api')
