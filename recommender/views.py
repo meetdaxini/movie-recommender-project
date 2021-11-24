@@ -7,11 +7,6 @@ from requests import get
 
 from .models import Movie
 
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# env_file = os.path.join(BASE_DIR, ".env")
-# env = environ.Env()
-# env.read_env(env_file)
-
 
 def get_trending_from_tmdb():
     baseurl = "https://api.themoviedb.org/3/trending/movie/day"
@@ -25,8 +20,7 @@ def get_trending_from_tmdb():
         trend_movie = [
             {
                 "Title": result["title"],
-                "Poster": "http://image.tmdb.org/t/p/w300"
-                + result["poster_path"],
+                "Poster": "http://image.tmdb.org/t/p/w300" + result["poster_path"],
                 "Year": result["release_date"],
                 "imdbRating": 0,
                 "rotten_tomatoes": 0,
@@ -66,7 +60,7 @@ def get_movie_data(mov):
             elif rating["Source"] == "Rotten Tomatoes":
                 required_md += [int(rating["Value"][:-1])]
         if len(required_md) < 6:
-            for i in range(6 - len(required_md)):
+            for _ in range(6 - len(required_md)):
                 required_md += [0]
 
     else:
@@ -94,13 +88,8 @@ def recommender(request):
         try:
             search_movie = Movie.objects.get(Title__iexact=movie)
             # print(search_movie.Title, 'found in db')
-
         except MultipleObjectsReturned:
-            search_movie = (
-                Movie.objects.filter(Title__iexact=movie)
-                .order_by("-imdbRating")
-                .first()
-            )
+            search_movie = Movie.objects.filter(Title__iexact=movie).order_by("-imdbRating").first()
 
         # from api
         except ObjectDoesNotExist:
@@ -111,6 +100,7 @@ def recommender(request):
                     "no_movie": "No Movie found for you query '" + movie + "'",
                 }
                 return render(request, "recommender/recommender.html", params)
+
             search_movie = Movie(
                 imdbID=added_movie[0],
                 Title=added_movie[1],
@@ -123,11 +113,10 @@ def recommender(request):
             )
             search_movie.save()
             # print(search_movie.Title, 'found in api')
-        get_movie_recommendations = get_movies_from_tastedive(
-            search_movie.Title
-        )
+        get_movie_recommendations = get_movies_from_tastedive(search_movie.Title)
         # print(get_movie_recommendations)
         related_movies = []
+
         for title in get_movie_recommendations:
             # from db
             try:
@@ -136,11 +125,7 @@ def recommender(request):
                 related_movies += [db_related_mv]
 
             except MultipleObjectsReturned:
-                db_related_mv = (
-                    Movie.objects.filter(Title__iexact=title)
-                    .order_by("-imdbRating")
-                    .first()
-                )
+                db_related_mv = Movie.objects.filter(Title__iexact=title).order_by("-imdbRating").first()
                 # print(db_related_mv.Title, 'found related in  double db')
                 related_movies += [db_related_mv]
 
@@ -181,6 +166,6 @@ def auto_complete(request):
         movie_objects = Movie.objects.filter(Title__istartswith=search)
     else:
         movie_objects = Movie.objects.filter(Title__icontains=search)
-    movies = [movie.Title for movie in movie_objects][:15]
+    movies = [movie.Title for movie in movie_objects[:15]]
     movies_json = JsonResponse(movies, safe=False)
     return movies_json

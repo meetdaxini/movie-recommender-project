@@ -1,11 +1,11 @@
-# Use an official lightweight Python image.
+# An official lightweight Python image.
 # https://hub.docker.com/_/python
 FROM python:3.8-slim
 
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 
-# Install dependencies.
+# Installing dependencies.
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 

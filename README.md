@@ -1,17 +1,18 @@
 # Movie Recommender
+
 ![Python](https://img.shields.io/badge/Python-3.8-blue)
 ![Framework](https://img.shields.io/badge/Framework-Django-darkgreen)
 ![Frontend](https://img.shields.io/badge/Frontend-HTML/CSS-red)
 
-Live at : https://movie-recommender-project-5do66bj3tq-uc.a.run.app
+Live at : https://movierecommender-njonx4n5hq-uc.a.run.app
 
 Built using Django v3.1.3 as back-end and HTML, CSS and Bootstrap for the front-end.
-It is deployed  by using a Docker Container, Google Cloud Run, Google Cloud SQL(PostgreSQL).
+It is deployed using Terraform and Docker on Google Cloud Run with Google Cloud SQL(PostgreSQL) as database.
 
 It uses TMDB API for daily trending movies data, TasteDive API for movie recommendations & OMDB API for movie ratings data and posters.
 The omdb api calls are then stored in the database so next time the same movie data will not be fetched from external api.
 
-Other tools and technologies used by me while creating it are Visual Studio Code, Git, Google Chrome(localhost was used for debugging), github corners fork me icon, jquery v3.5.1 for search auto completion.
+Other tools and technologies used by me while creating it are Visual Studio Code, Git, Google Chrome(localhost was used for debugging), jquery v3.5.1 for search auto completion.
 
 ## Screenshots
 
