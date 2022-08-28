@@ -4,7 +4,7 @@
 ![Framework](https://img.shields.io/badge/Framework-Django-darkgreen)
 ![Frontend](https://img.shields.io/badge/Frontend-HTML/CSS-red)
 
-Live at : https://movierecommender-njonx4n5hq-uc.a.run.app
+Live at : https://movierecommender-kwhmrv2gdq-uc.a.run.app
 
 Built using Django v3.1.3 as back-end and HTML, CSS and Bootstrap for the front-end.
 It is deployed using Terraform and Docker on Google Cloud Run with Google Cloud SQL(PostgreSQL) as database.
